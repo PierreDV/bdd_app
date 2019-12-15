@@ -5,7 +5,7 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: bundle exec rspec
+  - name: Setup
     task:
       jobs:
         - name: bundle install
@@ -14,3 +14,15 @@ blocks:
             - sem-version ruby 2.6.0
             - bundle install --deployment --path vendor/bundle
             - bundle exec rspec
+  - name: RSpec Tests
+    task:
+      jobs:
+        - name: run rspec
+          commands:
+            - bundle exec rspec
+  - name: Cucumber Tests
+    task:
+      jobs:
+        - name: run cucumber
+          commands:
+            - bundle exec cucumber
