@@ -8,7 +8,7 @@ blocks:
   - name: Setup
     task:
       jobs:
-        - name: 'Job #1'
+        - name: ''
           commands:
             - bundle install --deployment --path vendor/bundle
             - 'bundle exec rake db:setup'
@@ -16,12 +16,12 @@ blocks:
   - name: RSpec Tests
     task:
       jobs:
-        - name: 'Job #1'
+        - name: ''
           commands:
             - bundle exec rspec
   - name: Cucumber Tests
     task:
       jobs:
-        - name: 'Job #1'
+        - name: ''
           commands:
             - bundle exec cucumber
