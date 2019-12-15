@@ -5,17 +5,23 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: 'Block #1'
+  - name: Setup
     task:
       jobs:
-        - name: Setup
+        - name: 'Job #1'
           commands:
             - bundle install --deployment --path vendor/bundle
             - 'bundle exec rake db:setup'
             - 'bundle exec rake db:test:prepare'
-        - name: RSpec Tests
+  - name: RSpec Tests
+    task:
+      jobs:
+        - name: 'Job #1'
           commands:
             - bundle exec rspec
-        - name: Cucumber Tests
+  - name: Cucumber Tests
+    task:
+      jobs:
+        - name: 'Job #1'
           commands:
             - bundle exec cucumber
