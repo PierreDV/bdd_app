@@ -1,27 +1,16 @@
 version: v1.0
-name: Initial Pipeline
+name: Ruby
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: Setup
+  - name: bundle exec rspec
     task:
       jobs:
-        - name: Nameless 1
+        - name: bundle install
           commands:
+            - checkout
+            - sem-version ruby 2.6.0
             - bundle install --deployment --path vendor/bundle
-            - 'bundle exec rake db:setup'
-            - 'bundle exec rake db:test:prepare'
-  - name: RSpec Tests
-    task:
-      jobs:
-        - name: Nameless 1
-          commands:
             - bundle exec rspec
-  - name: Cucumber Tests
-    task:
-      jobs:
-        - name: Nameless 1
-          commands:
-            - bundle exec cucumber
